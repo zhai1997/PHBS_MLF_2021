@@ -11,44 +11,43 @@ This is a group project of [PHBS_MLF_2021](https://github.com/PHBS/MLF) course a
 
 ## 1. Introduction
 
-1. **Motivation:** In Figure 1, red dash lines mark the date when FOMC statements were publicated. The blue line is the return of 10-year treasury bond. We can easily find that the pulication of FOMC statements has a clear impact on the financial market, and red circles give some examples. We wonder how the information in FOMC statements influences the financial market, and whether we can use the information to predict the future of the market and thus make money in the market.
+1. **Motivation:** In Figure 1, red dash lines mark the date when FOMC statements were publicated. The blue line is the return of 10-year treasury bond. We can find that the publication of FOMC statements has a clear impact on the financial market, and red circles give some examples. We wonder how the information in FOMC statements influences the financial market, and whether we can use the information to predict the future of the market and thus make money.
 
 <p align='center'><img src="figure/st_10year.png"/></p>
 
-<p align='center'> <strong>Figure 1:</strong> Influence of publication of statements on 10-year treasury bond</p>
+<p align='center'> <strong>Figure 1:</strong> Influence of publication of statements on 10-year treasury bond yield</p>
 
-1. **X:** After we develop crawlers to download documents from FOMC website (Chapter 2), we extract information from the documents with both Doc2Vec (Chapter 3) and Latent Dirichlet Allocation (LDA, Chapter 4). Then we calculate the difference between two consecutive statements (Chapter 5.1) and principal components of the difference (Chapter 5.2), both of which are used for our prediction models.
+1. **X:** After we develop crawlers to download documents from FOMC's website (Chapter 2), we extract information from the documents with both Doc2Vec (Chapter 3) and Latent Dirichlet Allocation (LDA, Chapter 4). Then we calculate the difference between two consecutive statements (Chapter 5.1) and principal components of the difference (Chapter 5.2), both of which are used for our prediction models.
 2. **Y:** We download Federal Funds Rate, short-term and long-term treasury bond yields from Bloomberg (Chapter 5.3). Then we construct Y variables in two ways, i.e. discrete variables and continuous variables (Chapter 5.4).
 3. **Influence of Statements:** We first plot the influence of the publication of statements on Y (Chapter 6.1). 
-    1. Discrete Y: For discrete Y, we use Random Forest (Chapter 6.2 for original vectors and Chapter 6.3 for principal components), Support Vector Machine (SVM, Chapter 6.4 for original vectors and Chapter 6.5 for principal components) and Dense Neural Network (Chapter 6.6) to do prediction. We also adopt Grid Search to look for appropriate hyper-parameters, and test the accuracy of our model with 5-fold method.
+    1. Discrete Y: For discrete Y, we use Random Forest (Chapter 6.2 for original vectors and Chapter 6.3 for principal components), Support Vector Machine (SVM, Chapter 6.4 for original vectors and Chapter 6.5 for principal components) and Dense Neural Network (Chapter 6.6) to do prediction. We also adopt Grid Search to look for appropriate hyper-parameters, and test the accuracy of our models with 5-fold method.
     2. Continuous Y: For continuous Y, we use Dense Neural Network to do prediction (Chapter 6.7).
 4. **Explore Minutes:**
-    1. Cosine similarity: We calculate the cosine similarity between the statements and minutes of the same meeting, and the similarity between 2 consecutive documents of the same category (Chapter 7.1).
-    2. The influence of the publication of minutes: We test the effect of the publication of minutes on the responses of financial market (Chapter 7.2 & 7.3).
+    1. Cosine similarity: We calculate the cosine similarity between the statement and minutes of the same meeting, and the similarity between two consecutive minutes (Chapter 7.1).
+    2. Influence of the publication of minutes: We test the effect of the publication of minutes on the responses of financial market (Chapter 7.2 & 7.3).
 5. **Findings:** 
-    1. Discrete Y: Random Forest works the best when predicting all kind of response variables, with the highest accuracy and lowest standard deviation. The accuracy is 40.22% (std: 7.58%) for federal funds rate, 50.03% (std: 5.03%) for 10-year bond, and 51.03% (std: 3.32%) for 3-year bond. Models of principal components cannot beat those of original vectors.
-    2. Continuous Y: Dense Neural Network model works significantly better for Bond Yields (especially for the 10-year treasury bond yield) than for Federal Funds Rate.
-    3. Similartiy between documents: The cosine similarity based on Doc2Vec model outputs is low and volatile, while the similarity based on LDA model outputs is higher and smoother. Similarity between two consecutive minutes is much higher (i.e., less incremental information) than that between two statements or between the statement and minutes of the same meeting.
+    1. Discrete Y: Random Forest works the best when predicting all kind of response variables, with the highest accuracy and lowest standard deviation. The accuracy is 40.22% (with std 7.58%) for federal funds rate, 50.03% (with std 5.03%) for 10-year bond, and 51.03% (with std 3.32%) for 3-year bond. Models of principal components cannot beat those of original vectors.
+    2. Continuous Y: Dense Neural Network model works significantly better for bond yields (especially for the 10-year treasury bond yield) than for federal funds rate.
+    3. Similartiy between documents: The cosine similarity based on Doc2Vec model outputs is low and volatile, while the similarity based on LDA model outputs is higher and smoother. Similarity between two consecutive minutes is much higher than that between two statements or between the statement and minutes of the same meeting, meaning that the minutes documents contain less incremental information.
     4. Influence of minutes: The influence of minutes on financial markets is not stastically significant.
 
 ## 2. Empirical Work
 
 The empirical work can be divided into two parts.
 
-1. **Information extraction:** We use crawlers to collect statements and minites from the website and then use Natural Language Processing (NLP) models to extract information from documents. Finally we get **Xs and Ys** as inputs of the prediction models and explore the influence of statements and minutes on the financial market. The procedure of this part is shown in Figure 2.
+* **Information extraction:** We use crawlers to collect statements and minutes from FOMC's website and use Natural Language Processing (NLP) models to extract information from those documents. Finally we get **Xs and Ys** as inputs of the prediction models and explore the influence of statements and minutes on the financial market. The procedure of this part is shown in Figure 2.
 
 <p align='center'><img src="figure/process.png"/> </p>
 
 <p align='center'> <strong>Figure 2:</strong> Information Extraction </center></p>
 
-2. **Influence on the financial market:** In this part, we try several different models and different inputs to study the influence of statements on the financial market. We use Random Forest, SVM and Neural Network as our prediction model, Continues Y and Discrite Y as the the response variables, Principal componets of X and Original data of X as the predictor variables. We use Grid Search to seek optimal hyper-parameters and 5-fold to test the accuracy.
-3. Explore minutes: 
+* **Influence on the financial market:** In this part, we try several different models and different inputs to study the influence of statements on the financial market. We use Random Forest, SVM and Neural Network as our prediction model, Continues Y and Discrete Y as the response variables, Principal components of X and Original vectors of X as the predictors. We use Grid Search to seek optimal hyper-parameters and 5-fold method to test the accuracy.
 
 Below we list the explanation of several critical procedures in each part.
 
 #### 2.1 Collect HTML files of FOMC statements and minutes through web crawling
 
-See [Web Crawler.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Web%20Crawler.ipynb)
+(See [Web Crawler.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Web%20Crawler.ipynb))
 
 According to FOMC's website,
 
@@ -80,7 +79,7 @@ In practice, formats of the links vary much from year to year, so we download th
 
 #### 2.2 Remove HTML tags and convert pdf files
 
-See [Sentiment Analysis.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Sentiment%20Analysis.ipynb)
+(See [Sentiment Analysis.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Sentiment%20Analysis.ipynb))
 
 We use packages `BeautifulSoup ` and `unicodedata` to clean the tags and markdowns in the html files.
 
@@ -88,21 +87,21 @@ We use packages `BeautifulSoup ` and `unicodedata` to clean the tags and markdow
 
 #### 2.3 Stemming and lemmatizing
 
-We first remove the digits and some of the meaningless words from the documents.  Then, we use package `nltk` to detect the part of speech and stem and lemmatize words based on their part of speech.
+We first remove the digits and some meaningless words from the documents.  Then, we use package `nltk` to detect the part of speech and stem and lemmatize words based on their part of speech.
 
 #### 2.4 Construct document vectors using Doc2Vec and LDA model in `Gensim` package
 We adopt the Distributed Memory Model of Paragraph Vectors (PV-DM) introduced by Le and Mikolov (2014), with the vector size equal to 20 and the length of window defined as 5.
 
-We also train the Latent Dirichlet Allocation model introduced by Blei et al. (2003) with 7 themes. Then output of the model is the keywords (center) of each theme and the distance between each document and each theme.  We use the distance calculated by the model as the input of our classification model.
+We also train the Latent Dirichlet Allocation model introduced by Blei et al. (2003) with 7 topics. Then output of the model is the keywords (center) of each topic and the distance between each document and each topic.  We use the distance calculated by the model as the input of our classification and regression models.
 
 #### 2.5 Random Forest and SVM
 
-We split the training and test samples, and use `sklearn` to build Random Forest and SVM models. We use `sklearn` to do grid search to look for optiamal hyper-parameters and test the accuracy of the model with 5-fold. We consider two naive models as our benchmark: 
+We split the training and test samples, and use `sklearn` to build Random Forest and SVM models. We use `sklearn` to do grid search to look for optimal hyper-parameters and test the accuracy of models with 5-fold method. We consider two naive models as benchmarks: 
 
-1. Randomly choose one
-2. Always predict that the price will not change
+* Randomly choose one
+* Always predict that the price will not change
 
-Our model beats the two models in terms of the accuracy.
+Our models beat these two models in terms of accuracy.
 
 #### 2.6 Neural Network 
 
@@ -128,13 +127,13 @@ We also use statistical method to test the influence of minutes on the financial
 
 The result of our prediction model for discrete Y is as below. We can find that
 
-2. Random Forest works the best when predicting all kind of response variables, with higher accuracy and lower standard deviation.
-3. Neural Network works the best for 10-Year Bond Yield.
-4. Models of principal components cannot beat those of original vectors.
+* Random Forest works the best when predicting all kind of response variables, with higher accuracy and lower standard deviation.
+* Neural Network works the best for 10-Year Bond Yield.
+* Models using principal components cannot beat those using original vectors.
 
 <p align='center'> <strong>Table 1:</strong>  Results using discrete Y</center></p>
 
-| Model              | X                       | Y                      | Mean       | Standard Deviation | Coefficient of Variation |
+| Model              | X                       | Y                      | Mean Accuracy   | Standard Deviation | Coefficient of Variation |
 | :----------------- | ----------------------- | ---------------------- | ------------- | ------------------ | ------------------------ |
 | **Random  Forest** | **Original**            | **Federal Funds Rate** | **40.22%** | **7.58%**          | **18.84%**               |
 | **Random  Forest** | **Original**            | **10-Year Bond**       | **50.03%** | **5.03%**          | **10.05%**               |
@@ -170,6 +169,7 @@ The neural network model identifies changes in 10-year treasury bond yield best 
 #### 3.3 Similartiy between documents
 
 We find that the similarity calculated using Doc2Vec model outputs is low and volatile, with its mean close to 0 (ranging from -0.1 to 0.1). The similarity calculated using LDA model outputs is smoother and higher, with its mean around 0.9.
+
 Similarity between 2 consecutive minutes is higher and smoother than that between 2 statements or between the statement and minutes of the same meeting, with the mean of LDA vector similarity equal to 0.99. This high similarity means that the incremental information in minutes is less than that in the statements.
 
 #### 3.4 Influence of minutes
