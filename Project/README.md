@@ -184,5 +184,5 @@ We can find from Table 3 that the effect of the publication of minutes is much w
 
 <font color=black size=3 face=times><p>[1] Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation. *the Journal of Machine Learning Research*, *3*, 993-1022.</p>
 
-<p>[2] Le, Q., & Mikolov, T. (2014). Distributed Representations of Sentences and Documents. *Proceedings of the 31st International Conference on Machine Learning, 14*, 1188-1196.<br>
+<p>[2] Le, Q., & Mikolov, T. (2014). Distributed Representations of Sentences and Documents. *Proceedings of the 31st International Conference on Machine Learning*, *14*, 1188-1196.<br>
 
