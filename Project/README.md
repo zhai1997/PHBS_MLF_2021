@@ -57,19 +57,19 @@ The FOMC first announced the outcome of a meeting in February 1994. After making
 
 Therefore, our sample covers the time period from 1994 to 2021. FOMC statements and minutes from 2016 to 2021 can be accessed via [FOMC Meeting calendars, statements, and minutes (2016-2021)](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm). 
 
-<p align='center'><img src="figure/FOMC_2016-2021.png" style="zoom:60%;" /></p>
+<p align='center'><img src="figure/FOMC_2016-2021.png" width="600px" /></p>
 
 <p align='center'> <strong>Figure 3:</strong> FOMC statements and minutes from 2016 to 2021 </center></p>
 
 Those materials before 2016 can be accessed via [FOMC Historical Materials by Year](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
 
-<p align='center'><img src="figure/FOMC_1990-2015.png" style="zoom:60%;" /></p>
+<p align='center'><img src="figure/FOMC_1990-2015.png" width="600px" /></p>
 
 <p align='center'> <strong>Figure 4:</strong> FOMC statements and minutes before 2016 </center></p>
 
 Taking the year of 2010 as an example, layout of the website is similar to that of 2016-2021.
 
-<p align='center'><img src="figure/FOMC_2010.png" style="zoom:60%;" /></p>
+<p align='center'><img src="figure/FOMC_2010.png" width="600px" /></p>
 
 <p align='center'> <strong>Figure 5:</strong> Layout of the website </center></p>
 
@@ -159,6 +159,7 @@ The neural network model identifies changes in 10-year treasury bond yield best 
 
 <p align='center'> <strong>Table 2:</strong>  Results using continuous Y</center></p>
 
+
 | Model              | X                       | Y                      | Mean Squared Error | Standard Deviation of MSE |
 | :----------------- | ----------------------- | ---------------------- | ------------- | ------------------ |
 | **Neural Network**            | **Original**       | Federal Funds Rate | 5.24E-3   | 1.86E-2         |
@@ -175,7 +176,7 @@ Similarity between 2 consecutive minutes is higher and smoother than that betwee
 #### 3.4 Influence of minutes
 
 <p align='center'> <strong>Table 3:</strong> Influence of statements VS minutes</p>
-<p align='center'><img src="figure/influence.png" style="zoom:40%;" /></p>
+<p align='center'><img src="figure/influence.png" width="350px" /></p>
 
 
 We can find from Table 3 that the effect of the publication of minutes is much weaker than that of statements, and is not significant.
