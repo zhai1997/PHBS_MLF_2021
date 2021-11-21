@@ -11,21 +11,21 @@ This is a group project of [PHBS_MLF_2021](https://github.com/PHBS/MLF) course a
 
 ## 1. Introduction
 
-1. **Motivation:** In Figure 1, red dash lines mark the date when FOMC statements were publicated. The blue line is the return of 10-year treasury bond. We can find that the publication of FOMC statements has a clear impact on the financial market, and red circles give some examples. We wonder how the information in FOMC statements influences the financial market, and whether we can use the information to predict the future of the market and thus make money.
+* **Motivation:** In Figure 1, red dash lines mark the date when FOMC statements were publicated. The blue line is the return of 10-year treasury bond. We can find that the publication of FOMC statements has a clear impact on the financial market, and red circles give some examples. We wonder how the information in FOMC statements influences the financial market, and whether we can use the information to predict the future of the market and thus make money.
 
 <p align='center'><img src="figure/st_10year.png"/></p>
 
 <p align='center'> <strong>Figure 1:</strong> Influence of publication of statements on 10-year treasury bond yield</p>
 
-1. **X:** After we develop crawlers to download documents from FOMC's website (Chapter 2), we extract information from the documents with both Doc2Vec (Chapter 3) and Latent Dirichlet Allocation (LDA, Chapter 4). Then we calculate the difference between two consecutive statements (Chapter 5.1) and principal components of the difference (Chapter 5.2), both of which are used for our prediction models.
-2. **Y:** We download Federal Funds Rate, short-term and long-term treasury bond yields from Bloomberg (Chapter 5.3). Then we construct Y variables in two ways, i.e. discrete variables and continuous variables (Chapter 5.4).
-3. **Influence of Statements:** We first plot the influence of the publication of statements on Y (Chapter 6.1). 
+* **X:** After we develop crawlers to download documents from FOMC's website (Chapter 2), we extract information from the documents with both Doc2Vec (Chapter 3) and Latent Dirichlet Allocation (LDA, Chapter 4). Then we calculate the difference between two consecutive statements (Chapter 5.1) and principal components of the difference (Chapter 5.2), both of which are used for our prediction models.
+* **Y:** We download Federal Funds Rate, short-term and long-term treasury bond yields from Bloomberg (Chapter 5.3). Then we construct Y variables in two ways, i.e. discrete variables and continuous variables (Chapter 5.4).
+* **Influence of Statements:** We first plot the influence of the publication of statements on Y (Chapter 6.1). 
     1. Discrete Y: For discrete Y, we use Random Forest (Chapter 6.2 for original vectors and Chapter 6.3 for principal components), Support Vector Machine (SVM, Chapter 6.4 for original vectors and Chapter 6.5 for principal components) and Dense Neural Network (Chapter 6.6) to do prediction. We also adopt Grid Search to look for appropriate hyper-parameters, and test the accuracy of our models with 5-fold method.
     2. Continuous Y: For continuous Y, we use Dense Neural Network to do prediction (Chapter 6.7).
-4. **Explore Minutes:**
+* **Explore Minutes:**
     1. Cosine similarity: We calculate the cosine similarity between the statement and minutes of the same meeting, and the similarity between two consecutive minutes (Chapter 7.1).
     2. Influence of the publication of minutes: We test the effect of the publication of minutes on the responses of financial market (Chapter 7.2 & 7.3).
-5. **Findings:** 
+* **Findings:** 
     1. Discrete Y: Random Forest works the best when predicting all kind of response variables, with the highest accuracy and lowest standard deviation. The accuracy is 40.22% (with std 7.58%) for federal funds rate, 50.03% (with std 5.03%) for 10-year bond, and 51.03% (with std 3.32%) for 3-year bond. Models of principal components cannot beat those of original vectors.
     2. Continuous Y: Dense Neural Network model works significantly better for bond yields (especially for the 10-year treasury bond yield) than for federal funds rate.
     3. Similartiy between documents: The cosine similarity based on Doc2Vec model outputs is low and volatile, while the similarity based on LDA model outputs is higher and smoother. Similarity between two consecutive minutes is much higher than that between two statements or between the statement and minutes of the same meeting, meaning that the minutes documents contain less incremental information.
@@ -90,9 +90,9 @@ We use packages `BeautifulSoup ` and `unicodedata` to clean the tags and markdow
 We first remove the digits and some meaningless words from the documents.  Then, we use package `nltk` to detect the part of speech and stem and lemmatize words based on their part of speech.
 
 #### 2.4 Construct document vectors using Doc2Vec and LDA model in `Gensim` package
-We adopt the Distributed Memory Model of Paragraph Vectors (PV-DM) introduced by Le and Mikolov (2014), with the vector size equal to 20 and the length of window defined as 5.
+* We adopt the Distributed Memory Model of Paragraph Vectors (PV-DM) introduced by Le and Mikolov (2014), with the vector size equal to 20 and the length of window defined as 5.
 
-We also train the Latent Dirichlet Allocation model introduced by Blei et al. (2003) with 7 topics. Then output of the model is the keywords (center) of each topic and the distance between each document and each topic.  We use the distance calculated by the model as the input of our classification and regression models.
+* We also train the Latent Dirichlet Allocation model introduced by Blei et al. (2003) with 7 topics. Then output of the model is the keywords (center) of each topic and the distance between each document and each topic.  We use the distance calculated by the model as the input of our classification and regression models.
 
 #### 2.5 Random Forest and SVM
 
@@ -107,9 +107,9 @@ Our models beat these two models in terms of accuracy.
 
 We construct Dense Neural Network models using `keras` package. 
 
-For discrete y variables, we construct a 3-layer neural network model. The number of nodes in each layer is 32, 16, 3; activation functions in the first two layers are both relu, and the activation function in the third layer is softmax. All weights are initialized as one.
+* For discrete y variables, we construct a 3-layer neural network model. The number of nodes in each layer is 32, 16, 3; activation functions in the first two layers are both relu, and the activation function in the third layer is softmax. All weights are initialized as one.
 
-For continuous y variables, we construct a 4-layer neural network model. The number of nodes in each layer is 16, 8, 4, 1, and activation functions in the first three layers are all relu. The weights are initialized by drawing random numbers from normal distribution.
+* For continuous y variables, we construct a 4-layer neural network model. The number of nodes in each layer is 16, 8, 4, 1, and activation functions in the first three layers are all relu. The weights are initialized by drawing random numbers from normal distribution.
 
 #### 2.7 Calculate the cosine similarity between documents and influence of minutes 
 
