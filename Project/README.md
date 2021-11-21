@@ -75,7 +75,7 @@ Taking the year of 2010 as an example, layout of the website is similar to that 
 
 First, we collect all the links available on the website of each historical year. Second, we define regular expressions for statements and minutes according to the format of the file links. Third, we use the regular expressions defined to match the target links. Finally, we download the statements and minutes through these target links and rename them with the meeting dates.
 
-In practice, formats of the links vary much from year to year, so we download the file mannually if it reports an http error.
+In practice, formats of the links vary much from year to year, so we download the file manually if it reports an http error.
 
 #### 2.2 Remove HTML tags and convert pdf files
 
