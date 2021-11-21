@@ -6,7 +6,7 @@ This is a group project of [PHBS_MLF_2021](https://github.com/PHBS/MLF) course a
 
 **Instructor:** [Jaehyuk Choi](https://github.com/jaehyukchoi) 
 
-**File:** [Sentiment Analysis.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Cosine%20Similarity.ipynb), [Web Crawler.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Web%20Crawler.ipynb), [Cosine Similarity.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Cosine%20Similarity.ipynb), [PDF Processor.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/PDF%20Processor.ipynb)
+**Files:** [Sentiment Analysis.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Sentiment%20Analysis.ipynb) (Chapter1, Chapter 3-7), [Web Crawler.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Web%20Crawler.ipynb) (Chapter 2), [Cosine Similarity.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Cosine%20Similarity.ipynb), [PDF Processor.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/PDF%20Processor.ipynb) (Appendix)
 
 
 ## 1. Introduction
@@ -37,7 +37,7 @@ The empirical work can be divided into two parts.
 
 1. **Information extraction:** We use crawlers to collect statements and minites from the website and then use Natural Language Processing (NLP) models to extract information from documents. Finally we get **Xs and Ys** as inputs of the prediction models and explore the influence of statements and minutes on the financial market. The procedure of this part is shown in Figure 2.
 
-![](figure/process.png)
+<p align='center'>![](figure/process.png)</p>
 
 <p align='center'> <strong>Figure 2:</strong> Information Extraction </center></p>
 
@@ -79,6 +79,8 @@ First, we collect all the links available on the website of each historical year
 In practice, formats of the links vary much from year to year, so we download the file mannually if it reports an http error.
 
 #### 2.2 Remove HTML tags and convert pdf files
+
+See [Sentiment Analysis.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/Sentiment%20Analysis.ipynb)
 
 We use packages `BeautifulSoup ` and `unicodedata` to clean the tags and markdowns in the html files.
 
