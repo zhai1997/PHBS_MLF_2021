@@ -162,9 +162,9 @@ The neural network model identifies changes in 10-year treasury bond yield best 
 
 | Model              | X                       | Y                      | Mean Squared Error | Standard Deviation of MSE |
 | :----------------- | ----------------------- | ---------------------- | ------------- | ------------------ |
-| **Neural Network**            | **Original Vectors**       | Federal Funds Rate | 5.24E-3   | 1.86E-2         |
-| **Neural Network**            | **Original Vectors**       | **10-Year Bond**           | **0.58E-3**    | **0.20E-2**   |
-| **Neural Network**            | **Original Vectors**       | **3-Year Bond**            | **1.67E-3**    | **0.34E-2**   |
+| **Neural Network**            | **Original**       | Federal Funds Rate | 5.24E-3   | 1.86E-2         |
+| **Neural Network**            | **Original**       | **10-Year Bond**           | **0.58E-3**    | **0.20E-2**   |
+| **Neural Network**            | **Original**       | **3-Year Bond**            | **1.67E-3**    | **0.34E-2**   |
 
 
 #### 3.3 Similartiy between documents
