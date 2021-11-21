@@ -13,7 +13,7 @@ This is a group project of [PHBS_MLF_2021](https://github.com/PHBS/MLF) course a
 
 1. **Motivation:** In Figure 1, red dash lines mark the date when FOMC statements were publicated. The blue line is the return of 10-year treasury bond. We can easily find that the pulication of FOMC statements has a clear impact on the financial market, and red circles give some examples. We wonder how the information in FOMC statements influences the financial market, and whether we can use the information to predict the future of the market and thus make money in the market.
 
-![](figure/st_10year.png)
+<p align='center'><img src="figure/st_10year.png"/></p>
 
 <p align='center'> <strong>Figure 1:</strong> Influence of publication of statements on 10-year treasury bond</p>
 
@@ -37,7 +37,7 @@ The empirical work can be divided into two parts.
 
 1. **Information extraction:** We use crawlers to collect statements and minites from the website and then use Natural Language Processing (NLP) models to extract information from documents. Finally we get **Xs and Ys** as inputs of the prediction models and explore the influence of statements and minutes on the financial market. The procedure of this part is shown in Figure 2.
 
-<p align='center'>![](figure/process.png)</p>
+<p align='center'><img src="figure/process.png"/> </p>
 
 <p align='center'> <strong>Figure 2:</strong> Information Extraction </center></p>
 
@@ -58,19 +58,19 @@ The FOMC first announced the outcome of a meeting in February 1994. After making
 
 Therefore, our sample covers the time period from 1994 to 2021. FOMC statements and minutes from 2016 to 2021 can be accessed via [FOMC Meeting calendars, statements, and minutes (2016-2021)](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm). 
 
-<img src="figure/FOMC_2016-2021.png" style="zoom:60%;" />
+<p align='center'><img src="figure/FOMC_2016-2021.png" style="zoom:60%;" /></p>
 
 <p align='center'> <strong>Figure 3:</strong> FOMC statements and minutes from 2016 to 2021 </center></p>
 
 Those materials before 2016 can be accessed via [FOMC Historical Materials by Year](https://www.federalreserve.gov/monetarypolicy/fomc_historical_year.htm).
 
-<img src="figure/FOMC_1990-2015.png" style="zoom:60%;" />
+<p align='center'><img src="figure/FOMC_1990-2015.png" style="zoom:60%;" /></p>
 
 <p align='center'> <strong>Figure 4:</strong> FOMC statements and minutes before 2016 </center></p>
 
 Taking the year of 2010 as an example, layout of the website is similar to that of 2016-2021.
 
-<img src="figure/FOMC_2010.png" style="zoom:60%;" />
+<p align='center'><img src="figure/FOMC_2010.png" style="zoom:60%;" /></p>
 
 <p align='center'> <strong>Figure 5:</strong> Layout of the website </center></p>
 
@@ -84,7 +84,7 @@ See [Sentiment Analysis.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/m
 
 We use packages `BeautifulSoup ` and `unicodedata` to clean the tags and markdowns in the html files.
 
-We also collected a limited number of pdf files for some years before the class presentation. We use the package `pdfminer` to convert the pdf files into txt files and then construct traning and test document sets. This procedure is in [PDF Processor.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/PDF%20Processor.ipynb).
+(We also collected a limited number of pdf files for some years before the class presentation. We use the package `pdfminer` to convert the pdf files into txt files and then construct traning and test document sets. This procedure is in [PDF Processor.ipynb](https://github.com/XueyangHu/PHBS_MLF_2021/blob/master/Project/PDF%20Processor.ipynb).)
 
 #### 2.3 Stemming and lemmatizing
 
@@ -174,9 +174,9 @@ Similarity between 2 consecutive minutes is higher and smoother than that betwee
 
 #### 3.4 Influence of minutes
 
-<p align='center'> <strong>Table 3:</strong> Influence of statements VS minutes </center></p>
+<p align='center'> <strong>Table 3:</strong> Influence of statements VS minutes</p>
+<p align='center'><img src="figure/influence.png" style="zoom:40%;" /></p>
 
-<img src="figure/influence.png" style="zoom:40%;" />
 
 We can find from Table 3 that the effect of the publication of minutes is much weaker than that of statements, and is not significant.
 
@@ -185,3 +185,4 @@ We can find from Table 3 that the effect of the publication of minutes is much w
 <font color=black size=3 face=times><p>[1] Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation. *the Journal of Machine Learning Research*, *3*, 993-1022.</p>
 
 <p>[2] Le, Q., & Mikolov, T. (2014). Distributed Representations of Sentences and Documents. *Proceedings of the 31st International Conference on Machine Learning, 14*, 1188-1196.<br>
+
